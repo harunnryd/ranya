@@ -122,9 +122,13 @@ What it does:
 
 Local smoke test:
 ```bash
-docker compose -f docker-compose.docs.yml up --build -d docs
+DOCS_PORT=8080 docker compose -f docker-compose.docs.yml up --build -d docs
 ```
 Open `http://localhost:8080`.
+
+Note:
+- In Coolify, you can leave `DOCS_PORT` unset to auto-pick a free host port (default behavior).
+- If you need a fixed host port, set `DOCS_PORT` to an unused value.
 
 ### Local Live Preview (Hot Reload)
 ```bash

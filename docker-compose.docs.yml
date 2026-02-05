@@ -6,7 +6,7 @@ services:
     image: ranya-docs:local
     container_name: ranya-docs
     ports:
-      - "${DOCS_PORT:-8080}:80"
+      - "${DOCS_PORT:-0}:80"
     restart: unless-stopped
 
   docs-dev:
