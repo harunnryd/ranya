@@ -1,0 +1,109 @@
+site_name: Ranya
+site_description: Streaming telephony voice-agent framework in Go
+docs_dir: docs/en
+repo_url: https://github.com/harunnryd/ranya
+repo_name: harunnryd/ranya
+edit_uri: edit/master/docs/en/
+copyright: '<span class="r-footer-title">Ranya Framework</span><span class="r-footer-tagline">Production-grade, frame-driven voice agent framework in Go.</span><span class="r-footer-links"><a href="https://github.com/harunnryd/ranya">Repository</a><a href="https://github.com/harunnryd/ranya/stargazers">Star</a><a href="https://github.com/harunnryd/ranya/issues">Issues</a><a href="https://github.com/harunnryd/ranya/blob/master/LICENSE">Apache-2.0</a></span>'
+
+theme:
+  name: material
+  language: en
+  logo: assets/logo-hikari-header.svg
+  favicon: assets/favicon-hikari.svg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: orange
+      accent: pink
+
+nav:
+  - Overview:
+      - Home: index.md
+      - Start Here: start-here.md
+      - Task Flows: task-flows.md
+      - Why Ranya: why-ranya.md
+      - Anatomy: anatomy.md
+      - Architecture: architecture.md
+  - Tasks:
+      - "Task 1: Get a Call Working": task-1-call.md
+      - "Task 2: Add Tools": task-2-tools.md
+      - "Task 3: Add Routing + Language": task-3-routing.md
+      - "Task 4: Enable Observability": task-4-observability.md
+  - Concepts:
+      - Concepts Overview: concepts.md
+      - Frames and Metadata: frames.md
+      - Pipeline and Backpressure: pipeline.md
+      - Routing and Language: routing.md
+      - Turn Management: turn-management.md
+      - Tools and Confirmation: tools-confirmation.md
+      - Observability: observability.md
+  - Guides:
+      - Getting Started: getting-started.md
+      - Configuration: configuration.md
+      - Providers: providers.md
+      - Modules: modules.md
+      - Module Deep Dive: modules-deep-dive.md
+      - Examples: examples.md
+  - Reference:
+      - Troubleshooting: troubleshooting.md
+
+plugins:
+  - search
+
+extra:
+  generator: false
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Bahasa Indonesia
+      link: /id/
+      lang: id
+    - name: 日本語
+      link: /ja/
+      lang: ja
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/harunnryd/ranya
+      name: GitHub Repository
+    - icon: fontawesome/solid/star
+      link: https://github.com/harunnryd/ranya/stargazers
+      name: Star on GitHub
+    - icon: fontawesome/solid/code-fork
+      link: https://github.com/harunnryd/ranya/network/members
+      name: Fork on GitHub
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js
+  - assets/javascripts/mermaid-init.js

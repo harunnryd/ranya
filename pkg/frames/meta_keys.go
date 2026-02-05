@@ -1,0 +1,51 @@
+package frames
+
+// Meta key constants used across processors/transports.
+const (
+	MetaStreamID           = "stream_id"
+	MetaSource             = "source"
+	MetaCallSID            = "call_sid"
+	MetaTraceID            = "trace_id"
+	MetaFromNumber         = "from_number"
+	MetaAgent              = "agent"
+	MetaHandoffAgent       = "handoff_agent"
+	MetaSystemMessage      = "system_message"
+	MetaGreetingText       = "greeting_text"
+	MetaLanguage           = "language"
+	MetaLanguageConfidence = "language_confidence"
+	MetaGlobalLanguage     = "global_language"
+	MetaGlobalAgent        = "global_current_agent"
+	MetaGlobalPrefix       = "global_"
+
+	MetaToolCallID          = "tool_call_id"
+	MetaToolName            = "tool_name"
+	MetaToolArgs            = "tool_args"
+	MetaToolResult          = "tool_result"
+	MetaToolStatus          = "tool_status"
+	MetaToolError           = "tool_error"
+	MetaIdempotency         = "idempotency_key"
+	MetaToolRequiresConfirm = "tool_requires_confirm"
+	MetaToolConfirmPrompt   = "tool_confirm_prompt"
+
+	MetaImageURL     = "image_url"
+	MetaImageBase64  = "image_base64"
+	MetaImageMIME    = "image_mime"
+	MetaImageCaption = "caption"
+
+	MetaIsFinal           = "is_final"
+	MetaTTSFlush          = "tts_flush"
+	MetaDTMFDigit         = "dtmf_digit"
+	MetaDTMFPriority      = "dtmf_priority"
+	MetaReason            = "reason"
+	MetaRepromptAttempt   = "reprompt_attempt"
+	MetaShortTurnEnforced = "short_turn_enforced"
+	MetaNormalized        = "normalized"
+	MetaRecoveryReason    = "recovery_reason"
+	MetaCallEndReason     = "call_end_reason"
+	MetaCallSummary       = "call_summary"
+
+	MetaEncoding    = "encoding"
+	MetaCodec       = "codec"
+	MetaFormat      = "format"
+	MetaOldStreamID = "old_stream_id"
+)

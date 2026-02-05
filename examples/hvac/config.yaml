@@ -1,0 +1,168 @@
+# Environment configuration
+environment: "development"
+
+# Logging configuration
+# log_level: Controls the verbosity of logs (DEBUG, INFO, WARN, ERROR)
+#   - DEBUG: Shows all logs including detailed frame processing
+#   - INFO: Shows only lifecycle events (call start/end, component ready)
+#   Default: "info"
+log_level: "info"
+
+# log_format: Controls the format of log output (text, json)
+#   - text: Human-readable text format
+#   - json: Structured JSON format for log aggregation
+#   Default: "text"
+log_format: "text"
+
+# Transport configuration
+transports:
+  provider: twilio
+  settings:
+    account_sid: "${TWILIO_ACCOUNT_SID}"
+    auth_token: "${TWILIO_AUTH_TOKEN}"
+    public_url: "${TWILIO_PUBLIC_URL}"
+    server_addr: ":8080"
+    voice_path: "/voice"
+    ws_path: "/ws"
+    tts_webhook_path: "/tts/webhook"
+    status_callback_path: "/status"
+    voice_greeting: "Menghubungkan ke resepsionis HVAC..."
+
+pipeline:
+  async: true
+  stagebuffer: 128
+  highcapacity: 256
+  lowcapacity: 512
+  fairnessratio: 3
+  backpressure: "drop"
+
+engine:
+  samplerate: 8000
+  stt_replay_chunks: 50
+
+stt:
+  forward_interim: true
+
+turn:
+  barge_in_threshold_ms: 500
+  min_barge_in_ms: 300
+  end_of_turn_timeout_ms: 1500
+  silence_reprompt:
+    timeout_ms: 12000
+    max_attempts: 2
+    prompt_text: "Halo, apakah Anda masih di line?"
+    prompt_by_language:
+      id: "Halo, apakah Anda masih di line?"
+      en: "Hello, are you still there?"
+
+tools:
+  concurrency: 4
+  timeout_ms: 6000
+  retries: 1
+  retry_backoff_ms: 200
+  serialize_by_stream: true
+
+context:
+  max_history: 12
+  max_tokens: 1200
+
+summary:
+  enabled: true
+  max_entries: 8
+  max_chars: 600
+
+recovery:
+  max_attempts: 2
+  prompt_text: "Maaf, saya belum menangkapnya. Bisa jelaskan ulang secara singkat?"
+  prompt_by_language:
+    id: "Maaf, saya belum menangkapnya. Bisa jelaskan ulang secara singkat?"
+    en: "Sorry, I didn't catch that. Could you repeat it briefly?"
+
+confirmation:
+  mode: "llm"
+  llm_fallback: true
+  timeout_ms: 600
+
+router:
+  mode: "bootstrap"
+  max_turns: 2
+
+vendors:
+  stt:
+    provider: deepgram
+    settings:
+      api_key: "${DEEPGRAM_API_KEY}"
+      model: "nova-2"
+      # Use multi for code-switching (Deepgram streaming). For single-language, set "id".
+      language: "multi"
+      sample_rate: 8000
+      encoding: "mulaw"
+      interim: true
+      vad_events: true
+      echo_cancellation: true
+      utterance_end_ms: 1000
+
+  tts:
+    provider: elevenlabs
+    settings:
+      api_key: "${ELEVENLABS_API_KEY}"
+      voice_id: "${ELEVENLABS_VOICE_ID}"
+      model_id: "eleven_turbo_v2_5"
+      output_format: "ulaw_8000"
+      sample_rate: 8000
+
+  llm:
+    provider: openai
+    settings:
+      api_key: "${OPENAI_API_KEY}"
+      model: "gpt-4o-mini"
+      use_circuit_breaker: true
+      circuit_threshold: 3
+      circuit_cooldown_ms: 30000
+
+base_prompt: |
+  Kamu adalah asisten telephony HVAC profesional.
+  Tujuan utama:
+  - Kumpulkan lokasi, jenis AC, issue utama, urgensi, dan waktu yang diinginkan.
+  - Gunakan tool yang tersedia untuk estimasi biaya, jadwal, tiket, dan pembayaran.
+  - Jika perlu pindah agent, tulis #handoff=triage|technical|billing di akhir jawaban (sekali saja).
+  - Jawaban singkat, jelas, dan ramah. Konfirmasi detail penting sebelum final.
+  - Jika user memberi angka penting (nomor telepon, OTP, nominal), ulangi dan minta konfirmasi sebelum menjalankan tool.
+  - Jika menerima input DTMF, anggap sebagai angka pilihan atau nomor OTP.
+
+agent:
+  persona: "Senior HVAC call center"
+  style: "Ramah, singkat, dan konfirmasikan detail penting sebelum eksekusi."
+
+languages:
+  default: "id"
+  code_switching: true
+  # prompts: system prompt add-ons per language (routing/language detector uses these)
+  prompts:
+    id: "Gunakan Bahasa Indonesia. Jawaban singkat dan jelas."
+    en: "Use English. Keep responses short and clear."
+  # overrides: optional per-language vendor overrides (e.g., TTS voice)
+  overrides:
+    id:
+      tts:
+        settings:
+          voice_id: "${ELEVENLABS_VOICE_ID}"
+          model_id: "eleven_turbo_v2_5"
+    en:
+      tts:
+        settings:
+          voice_id: "${ELEVENLABS_VOICE_ID_EN}"
+          model_id: "eleven_flash_v2_5"
+image_path: "examples/hvac/assets/ac_label.png"
+image_mime: "image/png"
+
+observability:
+  artifacts_dir: "examples/hvac/artifacts"
+  record_audio: false
+  retention_days: 0
+
+privacy:
+  redact_pii: true
+
+simulate_bad_network: false
+simulate_handoff: false

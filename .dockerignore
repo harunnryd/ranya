@@ -1,0 +1,32 @@
+.git
+.gitignore
+.github
+
+# Local env
+.env
+.env.*
+!.env.example
+
+# Generated docs/artifacts
+.coolify/docs
+site
+site-id
+site-ja
+examples/hvac/artifacts
+
+# Python/MkDocs caches
+__pycache__
+.pytest_cache
+.mypy_cache
+.venv
+venv
+
+# Editor/OS
+.DS_Store
+.idea
+.vscode
+
+# Logs/temp
+*.log
+tmp
+tmp-*

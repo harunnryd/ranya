@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ranya Hikari logo">
+  <defs>
+    <radialGradient id="orb" cx="45%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#fff6c7"/>
+      <stop offset="55%" stop-color="#ffd68a"/>
+      <stop offset="100%" stop-color="#f7a1a8"/>
+    </radialGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd6a8"/>
+      <stop offset="100%" stop-color="#ffb085"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft rays -->
+  <g opacity="0.9">
+    <rect x="122" y="18" width="12" height="28" rx="6" fill="url(#ray)"/>
+    <rect x="122" y="210" width="12" height="28" rx="6" fill="url(#ray)"/>
+    <rect x="18" y="122" width="28" height="12" rx="6" fill="url(#ray)"/>
+    <rect x="210" y="122" width="28" height="12" rx="6" fill="url(#ray)"/>
+    <rect x="46" y="46" width="20" height="10" rx="5" transform="rotate(-45 46 46)" fill="url(#ray)"/>
+    <rect x="190" y="200" width="20" height="10" rx="5" transform="rotate(-45 190 200)" fill="url(#ray)"/>
+    <rect x="200" y="46" width="20" height="10" rx="5" transform="rotate(45 200 46)" fill="url(#ray)"/>
+    <rect x="46" y="200" width="20" height="10" rx="5" transform="rotate(45 46 200)" fill="url(#ray)"/>
+  </g>
+
+  <!-- orb body -->
+  <circle cx="128" cy="128" r="84" fill="url(#orb)"/>
+  <circle cx="128" cy="128" r="84" fill="none" stroke="#f7b07c" stroke-width="6"/>
+
+  <!-- cheeks -->
+  <circle cx="100" cy="150" r="8" fill="#f7a1a8" opacity="0.7"/>
+  <circle cx="156" cy="150" r="8" fill="#f7a1a8" opacity="0.7"/>
+
+  <!-- eyes -->
+  <circle cx="104" cy="120" r="6" fill="#7a4a3a"/>
+  <circle cx="152" cy="120" r="6" fill="#7a4a3a"/>
+
+  <!-- smile -->
+  <path d="M106 142 q22 18 44 0" fill="none" stroke="#7a4a3a" stroke-width="6" stroke-linecap="round"/>
+</svg>

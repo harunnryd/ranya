@@ -1,0 +1,37 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local configs
+examples/hvac/config.local.yaml
+
+# Generated artifacts
+examples/hvac/artifacts/
+.coolify/docs/
+site/
+site-id/
+site-ja/
+
+# Python/MkDocs caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Go outputs
+coverage.out
+
+# Logs and temp
+*.log
+tmp/
+tmp-*/
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

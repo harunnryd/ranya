@@ -1,0 +1,109 @@
+site_name: Ranya
+site_description: Streaming telephony voice-agent framework in Go
+docs_dir: docs/id
+repo_url: https://github.com/harunnryd/ranya
+repo_name: harunnryd/ranya
+edit_uri: edit/master/docs/id/
+copyright: '<span class="r-footer-title">Ranya Framework</span><span class="r-footer-tagline">Framework voice agent realtime berbasis frame di Go untuk produksi.</span><span class="r-footer-links"><a href="https://github.com/harunnryd/ranya">Repositori</a><a href="https://github.com/harunnryd/ranya/stargazers">Star</a><a href="https://github.com/harunnryd/ranya/issues">Issues</a><a href="https://github.com/harunnryd/ranya/blob/master/LICENSE">Lisensi Apache-2.0</a></span>'
+
+theme:
+  name: material
+  language: id
+  logo: assets/logo-hikari-header.svg
+  favicon: assets/favicon-hikari.svg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: orange
+      accent: pink
+
+nav:
+  - Ikhtisar:
+      - Beranda: index.md
+      - Mulai di Sini: start-here.md
+      - Alur Tugas: task-flows.md
+      - Kenapa Ranya: why-ranya.md
+      - Anatomi: anatomy.md
+      - Arsitektur: architecture.md
+  - Tugas:
+      - "Tugas 1: Call Jalan": task-1-call.md
+      - "Tugas 2: Tambah Tools": task-2-tools.md
+      - "Tugas 3: Routing + Bahasa": task-3-routing.md
+      - "Tugas 4: Observabilitas": task-4-observability.md
+  - Konsep:
+      - Ringkasan Konsep: concepts.md
+      - Frame dan Metadata: frames.md
+      - Pipeline dan Backpressure: pipeline.md
+      - Routing dan Bahasa: routing.md
+      - Manajemen Giliran: turn-management.md
+      - Tools dan Konfirmasi: tools-confirmation.md
+      - Observabilitas: observability.md
+  - Panduan:
+      - Memulai: getting-started.md
+      - Konfigurasi: configuration.md
+      - Penyedia: providers.md
+      - Modul: modules.md
+      - Bedah Modul: modules-deep-dive.md
+      - Contoh: examples.md
+  - Referensi:
+      - Pemecahan Masalah: troubleshooting.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js
+  - assets/javascripts/mermaid-init.js
+
+extra:
+  generator: false
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Bahasa Indonesia
+      link: /id/
+      lang: id
+    - name: 日本語
+      link: /ja/
+      lang: ja
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/harunnryd/ranya
+      name: GitHub Repository
+    - icon: fontawesome/solid/star
+      link: https://github.com/harunnryd/ranya/stargazers
+      name: Star on GitHub
+    - icon: fontawesome/solid/code-fork
+      link: https://github.com/harunnryd/ranya/network/members
+      name: Fork on GitHub
