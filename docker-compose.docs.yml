@@ -1,0 +1,23 @@
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    image: ranya-docs:local
+    container_name: ranya-docs
+    ports:
+      - "${DOCS_PORT:-8080}:80"
+    restart: unless-stopped
+
+  docs-dev:
+    image: squidfunk/mkdocs-material:9
+    container_name: ranya-docs-dev
+    working_dir: /docs
+    command: serve --dev-addr=0.0.0.0:8000 -f ${MKDOCS_CONFIG:-mkdocs.yml}
+    ports:
+      - "${DOCS_DEV_PORT:-8000}:8000"
+    volumes:
+      - ./:/docs
+    restart: unless-stopped
+    profiles:
+      - dev

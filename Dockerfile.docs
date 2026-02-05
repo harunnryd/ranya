@@ -1,0 +1,30 @@
+FROM squidfunk/mkdocs-material:9 AS builder
+WORKDIR /docs
+
+COPY mkdocs.yml mkdocs.id.yml mkdocs.ja.yml /docs/
+COPY docs /docs/docs
+
+RUN mkdir -p /site/en /site/id /site/ja \
+  && mkdocs build -f /docs/mkdocs.yml -d /site/en \
+  && mkdocs build -f /docs/mkdocs.id.yml -d /site/id \
+  && mkdocs build -f /docs/mkdocs.ja.yml -d /site/ja \
+  && cat > /site/index.html <<'EOF'
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ranya Docs</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/en/">/en/</a> ...</p>
+  </body>
+</html>
+EOF
+
+FROM nginx:1.27-alpine
+COPY --from=builder /site /usr/share/nginx/html
+
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD wget -q -O /dev/null http://127.0.0.1/ || exit 1

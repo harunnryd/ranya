@@ -105,24 +105,43 @@ func main() {
 - Bahasa Indonesia: [Beranda](docs/id/index.md), [Mulai di Sini](docs/id/start-here.md), [Alur Tugas](docs/id/task-flows.md)
 - Japanese: [ホーム](docs/ja/index.md), [はじめに](docs/ja/start-here.md), [タスクフロー](docs/ja/task-flows.md)
 
-## Deploy Docs on Coolify
-Use a single static-site resource and build all locales into one output directory.
+## Deploy Docs with Docker Compose
+Use `docker-compose.docs.yml` as the single source for docs runtime and local preview.
 
-Coolify app settings:
-- Build Pack: `Nixpacks`
+### Coolify / Production
+Point Coolify to `docker-compose.docs.yml` and deploy service `docs`.
+
+What it does:
+- Builds all locales with MkDocs + Material (`mkdocs.yml`, `mkdocs.id.yml`, `mkdocs.ja.yml`).
+- Serves static docs from Nginx.
+- Routes:
+  - `/en/` English
+  - `/id/` Indonesian
+  - `/ja/` Japanese
+  - `/` redirects to `/en/`
+
+Local smoke test:
+```bash
+docker compose -f docker-compose.docs.yml up --build -d docs
+```
+Open `http://localhost:8080`.
+
+### Local Live Preview (Hot Reload)
+```bash
+docker compose -f docker-compose.docs.yml --profile dev up docs-dev
+```
+
+Switch locale config:
+```bash
+MKDOCS_CONFIG=mkdocs.id.yml docker compose -f docker-compose.docs.yml --profile dev up docs-dev
+MKDOCS_CONFIG=mkdocs.ja.yml docker compose -f docker-compose.docs.yml --profile dev up docs-dev
+```
+
+### Legacy Path (Nixpacks Static Build)
+If you prefer static-site buildpack flow:
 - Install Command: `pip install mkdocs-material`
 - Build Command: `bash scripts/build_docs_coolify.sh`
 - Publish Directory: `.coolify/docs`
-
-Result:
-- `/en/` serves English docs
-- `/id/` serves Indonesian docs
-- `/ja/` serves Japanese docs
-- `/` redirects to `/en/`
-
-### Automatic Deploy (Recommended)
-Use Coolify Git integration (GitHub App) and enable Auto Deploy in the Coolify app.
-After that, every push to the connected branch triggers deployment automatically.
 
 ## Repository Layout
 - `pkg/` core framework modules.
