@@ -105,6 +105,20 @@ func main() {
 - Bahasa Indonesia: [Beranda](docs/id/index.md), [Mulai di Sini](docs/id/start-here.md), [Alur Tugas](docs/id/task-flows.md)
 - Japanese: [ホーム](docs/ja/index.md), [はじめに](docs/ja/start-here.md), [タスクフロー](docs/ja/task-flows.md)
 
+## Roadmap
+- [Roadmap](ROADMAP.md)
+- [good first issue](https://github.com/harunnryd/ranya/labels/good%20first%20issue)
+- [help wanted](https://github.com/harunnryd/ranya/labels/help%20wanted)
+
+Open contribution queue:
+- [#2 Add Makefile targets for local test and docs workflows](https://github.com/harunnryd/ranya/issues/2)
+- [#3 Add provider capability matrix page (EN/ID/JA)](https://github.com/harunnryd/ranya/issues/3)
+- [#4 Add Coolify docs deployment quickstart page (EN/ID/JA)](https://github.com/harunnryd/ranya/issues/4)
+- [#5 Harden Twilio signature verification docs and proxy URL tests](https://github.com/harunnryd/ranya/issues/5)
+- [#6 Add OpenTelemetry exporter for pipeline spans and metrics](https://github.com/harunnryd/ranya/issues/6)
+- [#7 Add integration tests for router and language metadata flow](https://github.com/harunnryd/ranya/issues/7)
+- [#8 Add preflight doctor command for config and env validation](https://github.com/harunnryd/ranya/issues/8)
+
 ## Deploy Docs with Docker Compose
 Use `docker-compose.docs.yml` as the single source for docs runtime and local preview.
 
